@@ -1,5 +1,11 @@
 Adds basic chord names (where harmonies are found) above the staff. Also includes inverse position of the chord as a superscript.
 
+Here's how to install a plugin in MuseScore (Mac):
+http://musescore.org/en/handbook/plugins#Mac-OS-X
+
+... Windows:
+http://musescore.org/en/handbook/plugins#Windows
+
 Retreived and enhanced from (thank you @merte!):
 http://musescore.org/en/project/findharmony
 
