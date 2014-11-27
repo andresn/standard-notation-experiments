@@ -8,7 +8,9 @@ http://musescore.org/en/handbook/plugins#Windows
 
 Retreived and enhanced from (thank you @merte!):
 http://musescore.org/en/project/findharmony
-Interesting thread linking to the above page: http://musescore.org/node/22708
+
+Interesting thread linking to the above page:
+http://musescore.org/node/22708
 
 Note: below screenshot also includes the names of each individual notes via the notenames plugin I also modified, also in this repo [here](https://github.com/andresn/standard-notation-experiments/edit/master/MuseScore/plugins/notenames/).
 
