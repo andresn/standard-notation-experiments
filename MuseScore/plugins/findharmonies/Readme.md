@@ -1,4 +1,4 @@
-Adds basic chord names (where harmonies are found) above the staff via [MuseScore](http://musescore.org/). Also includes inverse position of the chord as a superscript. Handy for instance after importing a song from a midi file and having MuseScore transcribe it to standard notation.
+Adds basic chord names (where harmonies are found) above the staff via [MuseScore](http://musescore.org/). Also includes inverse position of the chord as a superscript. Handy for, instance after, importing a song from a midi file and having MuseScore transcribe it to standard notation.
 
 Here's how to install a plugin in MuseScore (Mac):
 http://musescore.org/en/handbook/plugins#Mac-OS-X
@@ -8,6 +8,7 @@ http://musescore.org/en/handbook/plugins#Windows
 
 Retreived and enhanced from (thank you @merte!):
 http://musescore.org/en/project/findharmony
+Interesting thread linking to the above page: http://musescore.org/node/22708
 
 Note: below screenshot also includes the names of each individual notes via the notenames plugin I also modified, also in this repo [here](https://github.com/andresn/standard-notation-experiments/edit/master/MuseScore/plugins/notenames/).
 
