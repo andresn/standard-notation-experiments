@@ -1,3 +1,5 @@
+<img src="http://content.screencast.com/users/andresn/folders/Jing/media/18eed7ad-a2dc-4216-97ed-dd2f6dead3df/00000137.png"/>
+
 This Plugin for MuseScore is derived from the [Note Names plugin] (http://musescore.org/en/handbook/plugins#notenames) that comes as part of MuseScore and is meant to replace that.
 It adds the note names of all notes in either the current selection or all voices of all staves in the entire score as staff text (above/below the staff) and uses note names according to the locale MuseScore is configured for rather than just the English note names C, D, E, F, G, A, B.
 So the output changes with the setting of Menu -> Edit -> Preferences... -> General -> Language, resp. if that is set to 'System', the output depends on the language setting of your PC.
@@ -14,3 +16,6 @@ If you want a separator different from ",", change the corresponding variable in
 To use the plugin, you must first install it according to the [instructions in the Handbook] (http://musescore.org/en/handbook/plugins "Handbook").
 
 The idea for this plugin stems from a [discussion in the forum] (http://musescore.org/en/node/16786), the microtonal extension from [another discussion in the forum] (http://musescore.org/en/node/16870).
+
+Plugin's original repo:
+http://musescore.org/project/notenames
