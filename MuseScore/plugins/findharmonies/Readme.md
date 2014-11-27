@@ -1,4 +1,4 @@
-Adds basic chord names (where harmonies are found) above the staff via (http://musescore.org/)[MuseScore]. Also includes inverse position of the chord as a superscript. Handy for instance after importing a song from a midi file and having MuseScore transcribe it to standard notation.
+Adds basic chord names (where harmonies are found) above the staff via [MuseScore](http://musescore.org/). Also includes inverse position of the chord as a superscript. Handy for instance after importing a song from a midi file and having MuseScore transcribe it to standard notation.
 
 Here's how to install a plugin in MuseScore (Mac):
 http://musescore.org/en/handbook/plugins#Mac-OS-X
