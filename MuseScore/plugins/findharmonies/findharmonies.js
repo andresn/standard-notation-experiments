@@ -23,8 +23,10 @@ function init() {
 //-------------------------------------------------------------------
 
 function run(){
-  var erkannt=0
+
+  var erkannt=0;
   var cursor = new Cursor(curScore);
+
   for (var staff = 0; staff < curScore.staves; ++staff) {
     cursor.staff = staff;
     cursor.voice = 0;
@@ -32,47 +34,43 @@ function run(){
     while (!cursor.eos()) {
       if (cursor.isChord()) {
         var chord = cursor.chord();
+        var text = null;
         if (chord.notes == 3) {
           var grundton=chord.note(0).pitch;
           var diff1=chord.note(1).pitch-grundton;
           var diff2=chord.note(2).pitch-grundton;
           if ((diff1==4)&&(diff2==7)){ //Dur-Akkord // en-US: n/a (guess: stop chord?)
             ++erkannt;
-            var text  = new Text(curScore);
+            text  = new Text(curScore);
             text.text = tone(grundton%12);
-            cursor.putStaffText(text);
           }
           if ((diff1==5)&&(diff2==9)){ //Dur-Akkord 1. Umkehrung // en-US: reversal
             ++erkannt;
-            var text  = new Text(curScore);
-            text.text = tone((grundton+5)%12)+"¹";
-            cursor.putStaffText(text);
+            text  = new Text(curScore);
+            text.text = tone((grundton+5)%12)+"\u00B9";
           }
           if ((diff1==3)&&(diff2==8)){ //Dur-Akkord 2. Umkehrung // en-US: 2. reversal
             ++erkannt;
-            var text  = new Text(curScore);
-            text.text = tone((grundton+8)%12)+"²";
-            cursor.putStaffText(text);
+            text  = new Text(curScore);
+            text.text = tone((grundton+8)%12)+"\u00B2";
           }
           if ((diff1==3)&&(diff2==7)){ //Moll-Akkord // en-US: minor chord
             ++erkannt;
-            var text  = new Text(curScore);
+            text  = new Text(curScore);
             text.text = tone(grundton%12)+"m";
-            cursor.putStaffText(text);
           }
           if ((diff1==5)&&(diff2==8)){ //Moll-Akkord 1. Umkehrung // en-US: minor chord 1. reversal
             ++erkannt;
-            var text  = new Text(curScore);
-            text.text = tone((grundton+5)%12)+"m¹";
-            cursor.putStaffText(text);
+            text  = new Text(curScore);
+            text.text = tone((grundton+5)%12)+"m" + "\u00B9";
           }
           if ((diff1==4)&&(diff2==9)){ //Moll-Akkord 2. Umkehrung 
                                        // en-US: minor chord 1. reversal
             ++erkannt;
-            var text  = new Text(curScore);
-            text.text = tone((grundton+9)%12)+"m²";
-            cursor.putStaffText(text);
+            text  = new Text(curScore);
+            text.text = tone((grundton+9)%12)+"m" + "\u00B2";
           }
+
         }
         if (chord.notes == 4) {
           var grundton=chord.note(0).pitch;
@@ -80,34 +78,40 @@ function run(){
           var diff2=chord.note(2).pitch-grundton;
           var diff3=chord.note(3).pitch-grundton;
           if ((diff1==4)&&(diff2==7)&&(diff3==10)){ //Septime-Akkord
-                                                    // en-US: n/a (guess: 7th chord?)
+                                                    // en-US: n/a (guess: 7th chord)
             ++erkannt;
-            var text  = new Text(curScore);
+            text  = new Text(curScore);
             text.text = tone(grundton%12)+"7";
-            cursor.putStaffText(text);
           }
           if ((diff1==2)&&(diff2==6)&&(diff3==9)){ //Septime-Akkord 1. Umkehrung
-                                                   // en-US: n/a (guess: 7th chord?) 1. reversal
+                                                   // en-US: n/a (guess: 7th chord) 1. reversal
             ++erkannt;
-            var text  = new Text(curScore);
-            text.text = tone((grundton+2)%12)+"7¹";
-            cursor.putStaffText(text);
+            text  = new Text(curScore);
+            text.text = tone((grundton+2)%12)+"7" + "\u00B9";
           }
           if ((diff1==3)&&(diff2==5)&&(diff3==9)){ //Septime-Akkord 2. Umkehrung
                                                    // en-US: n/a (guess: 7th chord?) 1. reversal
             ++erkannt;
-            var text  = new Text(curScore);
-            text.text = tone((grundton+5)%12)+"7²";
-            cursor.putStaffText(text);
+            text  = new Text(curScore);
+            text.text = tone((grundton+5)%12)+"7" + "\u00B2";
           }
           if ((diff1==3)&&(diff2==6)&&(diff3==8)){ //Septime-Akkord 3. Umkehrung
                                                   // en-US: n/a (guess: 7th chord?) 1. reversal
             ++erkannt;
-            var text  = new Text(curScore);
-            text.text = tone((grundton+8)%12)+"7³";
-            cursor.putStaffText(text);
+            text  = new Text(curScore);
+            text.text = tone((grundton+8)%12)+"7" + "\u00B3";
           }
+
         }
+
+        if(text !== null) {
+          text.yOffset = -8;
+          text.defaultFont = new QFont("Arial", 8);
+          text.color = new QColor(255, 106, 0);
+
+          cursor.putStaffText(text);
+        }
+
       }
       cursor.next();
     }
