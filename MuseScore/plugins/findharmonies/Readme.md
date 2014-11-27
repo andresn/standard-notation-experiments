@@ -1,6 +1,6 @@
-Adds chord names (aka harmonies) above the staff and where applicable. Also includes inverse position of the chord as a superscript.
+Adds chord names (where harmonies are found) above the staff and where applicable. Also includes inverse position of the chord as a superscript.
 
-<img src="http://content.screencast.com/users/andresn/folders/Jing/media/d9386ccb-ab09-4460-9c70-9f3099e17ce5/00000138.png"/>
+<img width="33%" src="http://content.screencast.com/users/andresn/folders/Jing/media/d9386ccb-ab09-4460-9c70-9f3099e17ce5/00000138.png"/>
 
 Retreived and enhanced from:
 http://musescore.org/node/22708
