@@ -1,3 +1,5 @@
+<h1>Find Harmonies</h1>
+
 Adds basic chord names (where harmonies are found) above the staff via [MuseScore](http://musescore.org/). Also includes inverse position of the chord as a superscript. Handy for, instance after, importing a song from a midi file and having MuseScore transcribe it to standard notation.
 
 Here's how to install a plugin in MuseScore (Mac):
