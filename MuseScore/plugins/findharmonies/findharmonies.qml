@@ -15,24 +15,28 @@ MuseScore {
 
       var erkannt=0;
       var cursor = curScore.newCursor();
+      var endTick;
 
       for (var staff = 0; staff < curScore.nstaves; ++staff) {
 
          cursor.staff = staff;
          cursor.voice = 0;
          cursor.rewind(1);  // set cursor to first chord/rest
-         while (!cursor.eos()) {
 
-            if (cursor.isChord()) {
+         endTick = cursor.tick;
 
-               var chord = cursor.chord();
+         while (cursor.tick < endTick) {
+
+            if (cursor.element && cursor.element.type == Element.CHORD) {
+
+               var notes = cursor.element.notes;
                var text = null;
 
-               if (chord.notes == 3) {
+               if (notes.length == 3) {
 
-                  var grundton=chord.note(0).pitch;
-                  var diff1=chord.note(1).pitch-grundton;
-                  var diff2=chord.note(2).pitch-grundton;
+                  var grundton = notes[0].pitch;
+                  var diff1 = notes[1].pitch - grundton;
+                  var diff2 = notes[2].pitch - grundton;
 
                   if ((diff1==4)&&(diff2==7)) { //Dur-Akkord // en-US: n/a (guess: stop chord?)
                      ++erkannt;
@@ -67,12 +71,12 @@ MuseScore {
                   }
                } // end if chord.notes == 3
 
-               if (chord.notes == 4) {
+               if (notes.length == 4) {
 
-                  var grundton=chord.note(0).pitch;
-                  var diff1=chord.note(1).pitch-grundton;
-                  var diff2=chord.note(2).pitch-grundton;
-                  var diff3=chord.note(3).pitch-grundton;
+                  var grundton = notes[0].pitch;
+                  var diff1 = notes[1].pitch - grundton;
+                  var diff2 = notes[2].pitch - grundton;
+                  var diff3 = notes[3].pitch - grundton;
 
                   if ((diff1==4)&&(diff2==7)&&(diff3==10)) { //Septime-Akkord
                                         // en-US: n/a (guess: 7th chord)
