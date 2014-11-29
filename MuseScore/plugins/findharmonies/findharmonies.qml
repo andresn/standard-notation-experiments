@@ -2,177 +2,172 @@ import QtQuick 2.0
 import MuseScore 1.0
 
 MuseScore {
-
    version: "2.0"
-   description: qsTr("This plugin adds basic chord names where it finds harmonies")
-   menuPath: "Plugins.Notes." + qsTr("Find Harmonies")
+   description: qsTr("This plugin adds the name of a chord based on ")
+   menuPath: "Plugins.Chords." + qsTr("Name Chords") // this does not work, why?
+
+   function getChordName (rootNote) {
+
+         var text = '';
+
+         if (typeof rootNote.tpc === "undefined") { // like for grace notes ?!?
+            return;
+         }
+
+         switch (rootNote.tpc) {
+
+            case  6: text = qsTr("Fb"); break;
+            case  7: text = qsTr("Cb"); break;
+            case  8: text = qsTr("Gb"); break;
+            case  9: text = qsTr("Db"); break;
+            case 10: text = qsTr("Ab"); break;
+            case 11: text = qsTr("Eb"); break;
+            case 12: text = qsTr("Bb"); break;
+            case 13: text = qsTr("F") ; break;
+            case 14: text = qsTr("C") ; break;
+            case 15: text = qsTr("G") ; break;
+            case 16: text = qsTr("D") ; break;
+            case 17: text = qsTr("A") ; break;
+            case 18: text = qsTr("E") ; break;
+            case 19: text = qsTr("B") ; break;
+            case 20: text = qsTr("F#"); break;
+            case 21: text = qsTr("C#"); break;
+            case 22: text = qsTr("G#"); break;
+            case 23: text = qsTr("D#"); break;
+            case 24: text = qsTr("A#"); break;
+            case 25: text = qsTr("E#"); break;
+            case 26: text = qsTr("B#"); break;
+
+            default: text = qsTr(""); break;
+
+         } // end switch tpc
+
+      return text;
+   }
 
    onRun: {
 
-      if (typeof curScore === 'undefined') {
+      if (typeof curScore === 'undefined')
          Qt.quit();
+
+      var cursor = curScore.newCursor(),
+          startStaff,
+          endStaff,
+          endTick,
+          fullScore = false;
+
+      cursor.rewind(1);
+
+      if (!cursor.segment) { // no selection
+         fullScore = true;
+         startStaff = 0; // start with 1st staff
+         endStaff  = curScore.nstaves - 1; // and end with last
+      } else {
+
+         startStaff = cursor.staffIdx;
+         cursor.rewind(2);
+
+         if (cursor.tick === 0) {
+            // this happens when the selection includes
+            // the last measure of the score.
+            // rewind(2) goes behind the last segment (where
+            // there's none) and sets tick=0
+            endTick = curScore.lastSegment.tick + 1;
+         } else {
+            endTick = cursor.tick;
+         }
+
+         endStaff = cursor.staffIdx;
       }
 
-      var erkannt=0;
-      var cursor = curScore.newCursor();
-      var endTick;
+      // console.log('startStaff: ' + startStaff);
+      // console.log('endStaff: ' + endStaff);
+      // console.log('curScore.nstaves: ' + curScore.nstaves);
+      // console.log('endTick: ' + endTick);
+      // console.log('cursor.tick: ' + cursor.tick);
+      // console.log('curScore.lastSegment.tick: ' + curScore.lastSegment.tick);
 
-      for (var staff = 0; staff < curScore.nstaves; ++staff) {
+      for (var staff = startStaff; staff <= endStaff; staff++) {
 
-         cursor.staff = staff;
-         cursor.voice = 0;
-         cursor.rewind(1);  // set cursor to first chord/rest
+         // console.log('staff: ');
+         // console.log(staff);
 
-         endTick = cursor.tick;
+         for (var voice = 0; voice < 4; voice++) {
 
-         while (cursor.tick < endTick) {
+            // console.log('### Voice: ');
+            // console.log(voice);
 
-            if (cursor.element && cursor.element.type == Element.CHORD) {
+            cursor.rewind(1); // beginning of selection
+            cursor.voice = voice;
+            cursor.staffIdx = staff;
 
-               var notes = cursor.element.notes;
-               var text = null;
+            if (fullScore) { // no selection
+               cursor.rewind(0); // beginning of score
+            }
 
-               if (notes.length == 3) {
+            while (cursor.segment && (fullScore || cursor.tick < endTick)) {
 
-                  var grundton = notes[0].pitch;
-                  var diff1 = notes[1].pitch - grundton;
-                  var diff2 = notes[2].pitch - grundton;
+               // console.log('while');
+               // console.log('cursor.segment: ' + cursor.segment);
+               // console.log('cursor.segment.tick: ' + cursor.segment.tick);
+               // console.log('cursor.segment.type: ' + cursor.segment.type);
+               // console.log('cursor.tick: ' + cursor.tick);
+               // console.log('endTick: ' + endTick);
 
-                  if ((diff1==4)&&(diff2==7)) { //Dur-Akkord // en-US: n/a (guess: stop chord?)
-                     ++erkannt;
-                     text  = new Text(curScore);
-                     text.text = tone(grundton%12);
-                  }
-                  if ((diff1==5)&&(diff2==9)){ //Dur-Akkord 1. Umkehrung // en-US: reversal
-                     ++erkannt;
-                     text  = new Text(curScore);
-                     text.text = tone((grundton+5)%12)+"\u00B9";
-                  }
-                  if ((diff1==3)&&(diff2==8)){ //Dur-Akkord 2. Umkehrung // en-US: 2. reversal
-                     ++erkannt;
-                     text  = new Text(curScore);
-                     text.text = tone((grundton+8)%12)+"\u00B2";
-                  }
-                  if ((diff1==3)&&(diff2==7)){ //Moll-Akkord // en-US: minor chord
-                     ++erkannt;
-                     text  = new Text(curScore);
-                     text.text = tone(grundton%12)+"m";
-                  }
-                  if ((diff1==5)&&(diff2==8)){ //Moll-Akkord 1. Umkehrung // en-US: minor chord 1. reversal
-                     ++erkannt;
-                     text  = new Text(curScore);
-                     text.text = tone((grundton+5)%12)+"m" + "\u00B9";
-                  }
-                  if ((diff1==4)&&(diff2==9)){ //Moll-Akkord 2. Umkehrung 
-                                    // en-US: minor chord 1. reversal
-                     ++erkannt;
-                     text  = new Text(curScore);
-                     text.text = tone((grundton+9)%12)+"m" + "\u00B2";
-                  }
-               } // end if chord.notes == 3
+               if (cursor.element && cursor.element.type === Element.CHORD) {
 
-               if (notes.length == 4) {
+                  console.log('cursor.element.notes.length: ' + cursor.element.notes.length);
 
-                  var grundton = notes[0].pitch;
-                  var diff1 = notes[1].pitch - grundton;
-                  var diff2 = notes[2].pitch - grundton;
-                  var diff3 = notes[3].pitch - grundton;
+                  var notes = cursor.element.notes,
+                      staffText,
+                      chordName = null;
 
-                  if ((diff1==4)&&(diff2==7)&&(diff3==10)) { //Septime-Akkord
-                                        // en-US: n/a (guess: 7th chord)
-                     ++erkannt;
-                     text  = new Text(curScore);
-                     text.text = tone(grundton%12)+"7";
-                  }
+                  if(notes.length === 3) {
+                     var rootNote = notes[0],
+                         rootNotePitch = rootNote.pitch,
+                         intervals = [ notes[1].pitch - rootNotePitch, notes[2].pitch - rootNotePitch ];
 
-                  if ((diff1==2)&&(diff2==6)&&(diff3==9)) { //Septime-Akkord 1. Umkehrung
-                                                // en-US: n/a (guess: 7th chord) 1. reversal
-                     ++erkannt;
-                     text  = new Text(curScore);
-                     text.text = tone((grundton+2)%12)+"7" + "\u00B9";
+                     console.log("notes[0]: ");
+                     console.log(notes[0]);
+                     console.log("notes[0].pitch: ");
+                     console.log(notes[0].pitch);
+                     console.log("notes[1].pitch: ");
+                     console.log(notes[1].pitch);
+                     console.log("notes[2].pitch: ");
+                     console.log(notes[2].pitch);
+
+                     console.log("rootNote: ");
+                     console.log(rootNote);
+                     console.log("notes[1].pitch - rootNotePitch: ");
+                     console.log(notes[1].pitch - rootNotePitch);
+                     console.log("intervals[0]: ");
+                     console.log(intervals[0]);
+                     console.log("intervals[1]: ");
+                     console.log(intervals[1]);
+                     
+                     if(intervals[0] === 4 && intervals[1] === 7) {
+                        chordName = getChordName(rootNote);
+                     }
+                     
                   }
 
-                  if ((diff1==3)&&(diff2==5)&&(diff3==9)) { //Septime-Akkord 2. Umkehrung
-                                                // en-US: n/a (guess: 7th chord?) 1. reversal
-                     ++erkannt;
-                     text  = new Text(curScore);
-                     text.text = tone((grundton+5)%12)+"7" + "\u00B2";
+                  console.log('chordName: ');
+                  console.log(chordName);
+
+                  if(chordName !== null) {
+                     staffText = newElement(Element.STAFF_TEXT);
+                     staffText.text = chordName;
+                     staffText.pos.x = 1;
+                     cursor.add(staffText);
                   }
 
-                  if ((diff1==3)&&(diff2==6)&&(diff3==8)) { //Septime-Akkord 3. Umkehrung
-                                               // en-US: n/a (guess: 7th chord?) 1. reversal
-                     ++erkannt;
-                     text  = new Text(curScore);
-                     text.text = tone((grundton+8)%12)+"7" + "\u00B3";
-                  }
+               } // end if CHORD
 
-               } // end if chord.notes == 4
-
-               /* Style and position chord names */
-               if(text !== null) {
-                  text.yOffset = -8;
-                  text.defaultFont = new QFont("Arial", 8);
-                  text.color = new QColor(255, 106, 0);
-
-                  cursor.putStaffText(text);
-               }
-
-            } // end cursor.isChord()
-
-            cursor.next();
-         } // end while !cursor.eos()
-
-      } // end for var staff = 0; staff < curScore.staves; ++staff, next staff
-
-/*
-      mb = new QMessageBox();
-      mb.setWindowTitle("MuseScore: Harmony Names");
-      mb.text=erkannt+" harmonies found";
-      mb.exec();
-*/
+               cursor.next();
+            } // end while segment
+         } // end for voice
+      } // end for staff
 
       Qt.quit();
    } // end onRun
-
-   function tone(halbton) {
-      var ton="?";
-      if (halbton==0){
-         ton="C";
-      }
-      if (halbton==1){
-         ton="Db";
-      }
-      if (halbton==2){
-         ton="D";
-      }
-      if (halbton==3){
-         ton="Eb";
-      }
-      if (halbton==4){
-         ton="E";
-      }
-      if (halbton==5){
-         ton="F";
-      }
-      if (halbton==6){
-         ton="Gb";
-      }
-      if (halbton==7){
-         ton="G";
-      }
-      if (halbton==8){
-         ton="Ab";
-      }
-      if (halbton==9){
-         ton="A";
-      }
-      if (halbton==10){
-         ton="Bb";
-      }
-      if (halbton==11){
-         ton="B";
-      }
-
-      return(ton);
-   } // end tone
 }
