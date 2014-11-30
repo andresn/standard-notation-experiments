@@ -13,6 +13,7 @@ MuseScore {
             inversion = null,
             inversions = ["\u00B9", "\u00B2"], // unicode for superscript "1", "2" (e.g. to represent C Major first, or second inversion)
             chordName = '',
+            form = '',
             firstNote = notes[0],
             firstNotePitch = firstNote.pitch,
             intervals;
@@ -56,13 +57,33 @@ MuseScore {
                 inversion = 1;
             }
 
+            /* Minor chord */
+            if(intervals[0] === 3 && intervals[1] === 7) {
+                rootNote = notes[0];
+                form = 'm';
+            }
+
+            /* ... first inversion */
+            if(intervals[0] === 4 && intervals[1] === 9) {
+                rootNote = notes[2];
+                inversion = 0;
+                form = 'm';
+            }
+
+            /* ... second inversion */
+            if(intervals[0] === 5 && intervals[1] === 8) {
+                rootNote = notes[1];
+                inversion = 1;
+                form = 'm';
+            }
+
         }
 
         console.log('what root?');
         console.log(rootNote);
 
         if(rootNote !== null) {
-            chordName = getNoteName(rootNote);
+            chordName = getNoteName(rootNote) + form;
         }
 
         if(chordName !== '' && inversion !== null) {
