@@ -4,14 +4,14 @@ import MuseScore 1.0
 MuseScore {
 
     version: "2.0"
-    description: qsTr("This plugin adds the name of a chord based on ")
+    description: qsTr("This plugin adds the name of basic chords based on intervals between notes in each chord.")
     menuPath: "Plugins.Chords." + qsTr("Name Chords") // this does not work, why?
 
     function getChordName (notes) {
 
         var rootNote = null,
             inversion = null,
-            inversions = ["\u00B9", "\u00B2"], // unicode for superscript "1", "2" (e.g. to represent C Major first, or second inversion)
+            inversions = ["\u00B9", "\u00B2", "\u00B3"], // unicode for superscript "1", "2", "3" (e.g. to represent C Major first, or second inversion)
             chordName = '',
             form = '',
             firstNote = notes[0],
@@ -20,7 +20,10 @@ MuseScore {
 
         if(notes.length === 3) {
 
-            intervals = [ notes[1].pitch - firstNotePitch, notes[2].pitch - firstNotePitch ];
+            intervals = [
+                notes[1].pitch - firstNotePitch,
+                notes[2].pitch - firstNotePitch
+            ];
 
             console.log("notes[0]: ");
             console.log(notes[0]);
@@ -79,6 +82,67 @@ MuseScore {
 
         }
 
+        if(notes.length === 4) {
+
+            intervals = [
+                notes[1].pitch - firstNotePitch,
+                notes[2].pitch - firstNotePitch,
+                notes[3].pitch - firstNotePitch
+            ];
+
+            console.log("notes[0]: ");
+            console.log(notes[0]);
+            console.log("notes[0].pitch: ");
+            console.log(notes[0].pitch);
+            console.log("notes[1].pitch: ");
+            console.log(notes[1].pitch);
+            console.log("notes[2].pitch: ");
+            console.log(notes[2].pitch);
+            console.log("notes[3].pitch: ");
+            console.log(notes[3].pitch);
+
+            console.log("firstNote: ");
+            console.log(firstNote);
+            console.log("notes[1].pitch - firstNotePitch: ");
+            console.log(notes[1].pitch - firstNotePitch);
+            console.log("intervals[0]: ");
+            console.log(intervals[0]);
+            console.log("intervals[1]: ");
+            console.log(intervals[1]);
+            console.log("intervals[2]: ");
+            console.log(intervals[2]);
+
+            /* 7th chord */
+            if(intervals[0] === 4 && intervals[1] === 7 && intervals[2] === 10) {
+                rootNote = notes[0];
+                form = '7';
+            }
+
+            /* ... first inversion */
+            if(intervals[0] === 3 && intervals[1] === 6  && intervals[2] === 8) {
+                rootNote = notes[3];
+                inversion = 0;
+                form = '7';
+            }
+
+            /* ... second inversion */
+            if(intervals[0] === 3 && intervals[1] === 5 && intervals[2] === 9) {
+                rootNote = notes[2];
+                inversion = 1;
+                form = '7';
+            }
+
+            /* ... third inversion */
+            if(intervals[0] === 2 && intervals[1] === 6 && intervals[2] === 9) {
+                rootNote = notes[1];
+                inversion = 2;
+                form = '7';
+            }
+
+        }
+
+        console.log('inversion: ');
+        console.log(inversion);
         console.log('what root?');
         console.log(rootNote);
 
@@ -98,6 +162,10 @@ MuseScore {
         console.log(getNoteName(notes[1]));
         console.log('notes[2]: ');
         console.log(getNoteName(notes[2]));
+        if(typeof notes[3] !== 'undefined') {
+            console.log('notes[3]: ');
+            console.log(getNoteName(notes[3]));
+        }
 
         return chordName;
 
