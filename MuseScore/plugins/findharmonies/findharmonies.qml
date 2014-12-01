@@ -25,23 +25,23 @@ MuseScore {
                 notes[2].pitch - firstNotePitch
             ];
 
-            console.log("notes[0]: ");
-            console.log(notes[0]);
-            console.log("notes[0].pitch: ");
-            console.log(notes[0].pitch);
-            console.log("notes[1].pitch: ");
-            console.log(notes[1].pitch);
-            console.log("notes[2].pitch: ");
-            console.log(notes[2].pitch);
+            // console.log("notes[0]: ");
+            // console.log(notes[0]);
+            // console.log("notes[0].pitch: ");
+            // console.log(notes[0].pitch);
+            // console.log("notes[1].pitch: ");
+            // console.log(notes[1].pitch);
+            // console.log("notes[2].pitch: ");
+            // console.log(notes[2].pitch);
 
-            console.log("firstNote: ");
-            console.log(firstNote);
-            console.log("notes[1].pitch - firstNotePitch: ");
-            console.log(notes[1].pitch - firstNotePitch);
-            console.log("intervals[0]: ");
-            console.log(intervals[0]);
-            console.log("intervals[1]: ");
-            console.log(intervals[1]);
+            // console.log("firstNote: ");
+            // console.log(firstNote);
+            // console.log("notes[1].pitch - firstNotePitch: ");
+            // console.log(notes[1].pitch - firstNotePitch);
+            // console.log("intervals[0]: ");
+            // console.log(intervals[0]);
+            // console.log("intervals[1]: ");
+            // console.log(intervals[1]);
 
             /* Major chord */
             if(intervals[0] === 4 && intervals[1] === 7) {
@@ -90,27 +90,27 @@ MuseScore {
                 notes[3].pitch - firstNotePitch
             ];
 
-            console.log("notes[0]: ");
-            console.log(notes[0]);
-            console.log("notes[0].pitch: ");
-            console.log(notes[0].pitch);
-            console.log("notes[1].pitch: ");
-            console.log(notes[1].pitch);
-            console.log("notes[2].pitch: ");
-            console.log(notes[2].pitch);
-            console.log("notes[3].pitch: ");
-            console.log(notes[3].pitch);
+            // console.log("notes[0]: ");
+            // console.log(notes[0]);
+            // console.log("notes[0].pitch: ");
+            // console.log(notes[0].pitch);
+            // console.log("notes[1].pitch: ");
+            // console.log(notes[1].pitch);
+            // console.log("notes[2].pitch: ");
+            // console.log(notes[2].pitch);
+            // console.log("notes[3].pitch: ");
+            // console.log(notes[3].pitch);
 
-            console.log("firstNote: ");
-            console.log(firstNote);
-            console.log("notes[1].pitch - firstNotePitch: ");
-            console.log(notes[1].pitch - firstNotePitch);
-            console.log("intervals[0]: ");
-            console.log(intervals[0]);
-            console.log("intervals[1]: ");
-            console.log(intervals[1]);
-            console.log("intervals[2]: ");
-            console.log(intervals[2]);
+            // console.log("firstNote: ");
+            // console.log(firstNote);
+            // console.log("notes[1].pitch - firstNotePitch: ");
+            // console.log(notes[1].pitch - firstNotePitch);
+            // console.log("intervals[0]: ");
+            // console.log(intervals[0]);
+            // console.log("intervals[1]: ");
+            // console.log(intervals[1]);
+            // console.log("intervals[2]: ");
+            // console.log(intervals[2]);
 
             /* 7th chord */
             if(intervals[0] === 4 && intervals[1] === 7 && intervals[2] === 10) {
@@ -141,10 +141,10 @@ MuseScore {
 
         }
 
-        console.log('inversion: ');
-        console.log(inversion);
-        console.log('what root?');
-        console.log(rootNote);
+        // console.log('inversion: ');
+        // console.log(inversion);
+        // console.log('what root?');
+        // console.log(rootNote);
 
         if(rootNote !== null) {
             chordName = getNoteName(rootNote) + form;
@@ -154,17 +154,17 @@ MuseScore {
             chordName += inversions[inversion];
         }
 
-        console.log('chordName: ');
-        console.log(chordName);
-        console.log('notes[0]: ');
-        console.log(getNoteName(notes[0]));
-        console.log('notes[1]: ');
-        console.log(getNoteName(notes[1]));
-        console.log('notes[2]: ');
-        console.log(getNoteName(notes[2]));
+        // console.log('chordName: ');
+        // console.log(chordName);
+        // console.log('notes[0]: ');
+        // console.log(getNoteName(notes[0]));
+        // console.log('notes[1]: ');
+        // console.log(getNoteName(notes[1]));
+        // console.log('notes[2]: ');
+        // console.log(getNoteName(notes[2]));
         if(typeof notes[3] !== 'undefined') {
-            console.log('notes[3]: ');
-            console.log(getNoteName(notes[3]));
+            // console.log('notes[3]: ');
+            // console.log(getNoteName(notes[3]));
         }
 
         return chordName;
@@ -293,8 +293,8 @@ MuseScore {
                         var staffText,
                             chordName = getChordName(cursor.element.notes);
 
-                        console.log('chordName: ');
-                        console.log(chordName);
+                        // console.log('chordName: ');
+                        // console.log(chordName);
 
                         if(chordName !== '') {
                             staffText = newElement(Element.STAFF_TEXT);
