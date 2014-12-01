@@ -27,7 +27,7 @@ http://musescore.org/en/handbook/plugins#Windows
 
 <h3>Resources</h3>
 
-Interesting thread linking to the above page:
+Interesting thread:
 http://musescore.org/node/22708
 
 
