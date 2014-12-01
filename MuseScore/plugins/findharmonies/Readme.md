@@ -1,8 +1,9 @@
 <h1>Find Harmonies</h1>
 
 <h3>For Musescore 2.0</h3>
-
-<img style="display:block;" height="150px" src="http://content.screencast.com/users/andresn/folders/Jing/media/db7e6194-6ae2-44c8-9add-2269e4894e62/00000140.png"/>
+<div>
+<img height="150px" src="http://content.screencast.com/users/andresn/folders/Jing/media/db7e6194-6ae2-44c8-9add-2269e4894e62/00000140.png"/>
+</div>
 NOTE: MuseScore above 2.0 only supports .qml files when installing plugins.
 
 <h3>For MuseScore 1.3</h3>
