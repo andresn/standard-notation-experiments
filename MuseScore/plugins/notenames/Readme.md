@@ -1,4 +1,8 @@
+<h1>Notenames</h1>
+
 <img src="http://content.screencast.com/users/andresn/folders/Jing/media/18eed7ad-a2dc-4216-97ed-dd2f6dead3df/00000137.png"/>
+
+NOTE: Works for only MuseScore 1.3 and below.
 
 Plugin's original repo and description:
 http://musescore.org/project/notenames
