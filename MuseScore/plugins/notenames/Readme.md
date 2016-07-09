@@ -2,7 +2,7 @@
 
 <img src="http://content.screencast.com/users/andresn/folders/Jing/media/18eed7ad-a2dc-4216-97ed-dd2f6dead3df/00000137.png"/>
 
-NOTE: This only works for Musescore 1.3 and below. Also, color and note formatting works for only MuseScore 1.3 and below.
+NOTE: This only works for Musescore 1.3 and below. Also, color and note formatting works for only MuseScore 1.3 and below. Chord names plugin in the above picture also available in this repo [here](https://github.com/andresn/standard-notation-experiments/blob/master/MuseScore/plugins/findharmonies/Readme.md)
 
 <h2>To install plugin:</h2>
 
@@ -18,8 +18,8 @@ In any of the above cases, restart MuseScore to allow the new plugin(s) to load.
 In MuseScore 2.0+ the plugin then needs to get enabled in Menu -> Edit -> Preferences -> Plugins, followed by another restart.
 Prior to MuseScore 2.0 a score needs to be open for the Plugins menu to become available.
 
-Plugin's original instructions (retrieved on 11/2014 for MusesScore 1.3):
-To use the plugin, you must first install it according to the [instructions in the Handbook] (https://web.archive.org/web/20141224083216/http://musescore.org/en/handbook/plugins)
+Plugin's original instructions (retrieved on 11/2014 for MusesScore 1.3):<br />
+https://web.archive.org/web/20141224083216/http://musescore.org/en/handbook/plugins
 
 <h2>Plugin's original repo and description:</h2>
 Source: http://musescore.org/project/notenames
