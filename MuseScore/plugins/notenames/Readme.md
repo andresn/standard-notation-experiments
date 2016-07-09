@@ -21,7 +21,7 @@ Prior to MuseScore 2.0 a score needs to be open for the Plugins menu to become a
 Plugin's original instructions (retrieved on 11/2014 for MusesScore 1.3):
 To use the plugin, you must first install it according to the [instructions in the Handbook] (https://web.archive.org/web/20141224083216/http://musescore.org/en/handbook/plugins)
 
-<h2>Plugin's original repo and description:<h2>
+<h2>Plugin's original repo and description:</h2>
 Source: http://musescore.org/project/notenames
 
 This Plugin for MuseScore is derived from the [Note Names plugin] (http://musescore.org/en/handbook/plugins#notenames) that comes as part of MuseScore and is meant to replace that.
