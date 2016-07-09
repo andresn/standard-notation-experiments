@@ -5,7 +5,7 @@ Adds basic chord names (where harmonies are found) above the staff via [MuseScor
 Retreived and enhanced from (thank you @merte!):
 http://musescore.org/en/project/findharmony
 
-<h3>For Musescore 2.0</h3>
+<h3>For Musescore 2.0 [Currently does not work, but the version for 1.3 below does on at least Mac OS X El Capita Version 10.11.5)</h3>
 <div>
 <img height="150px" src="http://content.screencast.com/users/andresn/folders/Jing/media/db7e6194-6ae2-44c8-9add-2269e4894e62/00000140.png"/>
 </div>
