@@ -17,13 +17,24 @@ NOTE: MuseScore above 2.0 only supports .qml files when installing plugins.
 
 NOTE: screenshot above also includes the names of each individual notes via the notenames plugin I also modified, also in this repo [here](https://github.com/andresn/standard-notation-experiments/edit/master/MuseScore/plugins/notenames/).
 
-<h3>Installing</h3>
+NOTE: This only works for Musescore 1.3 and below. Also, color and note formatting works for only MuseScore 1.3 and below.
 
-Here's how to install a plugin in MuseScore (Mac). NOTE: MuseScore 2.0 and above only supports .qml files:
-http://musescore.org/en/handbook/plugins#Mac-OS-X
+<h4>To install plugin:</h4>
 
-... Windows:
-http://musescore.org/en/handbook/plugins#Windows
+<h5>Mac</h5>
+On Mac OS X, MuseScore looks for plugins in the MuseScore bundle in /Applications/MuseScore.app/Contents/Resources/plugins and in ~/Library/Application Support/MusE/MuseScore/plugins. To be able to move files in the app bundle, right click (Control-click) on MuseScore.app and choose "Show package contents" to reveal the Contents directory. Be careful to use Contents/Resources/plugins and not Contents/plugins.
+
+<h5>Windows</h5>
+MuseScore looks for plugins in %ProgramFiles%\MuseScore\Plugins (resp. %ProgramFiles(x86)%\MuseScore\Plugins for the 64-bit versions) and in %LOCALAPPDATA%\MusE\MuseScore\plugins on Vista and Seven or C:\Documents and Settings\USERNAME\Local Settings\Application Data\MusE\MuseScore\plugins (adjusted to your language version) on XP.
+
+<h5>Linux</h5>
+In Linux, MuseScore looks for plugins in /usr/share/mscore-1.2/plugins and in ~/.local/share/data/MusE/MuseScore/plugins.
+In any of the above cases, restart MuseScore to allow the new plugin(s) to load.
+In MuseScore 2.0+ the plugin then needs to get enabled in Menu -> Edit -> Preferences -> Plugins, followed by another restart.
+Prior to MuseScore 2.0 a score needs to be open for the Plugins menu to become available.
+
+Plugin's original instructions (retrieved on 11/2014 for MusesScore 1.3):
+To use the plugin, you must first install it according to the [instructions in the Handbook] (https://web.archive.org/web/20141224083216/http://musescore.org/en/handbook/plugins)
 
 <h3>Resources</h3>
 
